@@ -49,7 +49,7 @@ const coreServices = [
 
 export function Navbar() {
   const { settings } = useSite();
-  const pathname = usePathname();
+  const pathname = usePathname() || '';
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
@@ -147,7 +147,7 @@ export function Navbar() {
               {navLinks.map((link) => {
                 const isActive =
                   pathname === link.href ||
-                  (link.href !== '/' && pathname.startsWith(link.href));
+                  (link.href !== '/' && Boolean(pathname && pathname.startsWith(link.href)));
 
                 if (link.isDropdown) {
                   return (

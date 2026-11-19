@@ -42,7 +42,7 @@ export default function AdminDashboardLayout({
   children: React.ReactNode;
 }) {
   const { user, loading, logout } = useAuth();
-  const pathname = usePathname();
+  const pathname = usePathname() || '';
   const router = useRouter();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -113,7 +113,7 @@ export default function AdminDashboardLayout({
               const isActive =
                 item.href === '/admin/dashboard'
                   ? pathname === '/admin/dashboard'
-                  : pathname.startsWith(item.href);
+                  : Boolean(pathname && pathname.startsWith(item.href));
 
               return (
                 <Link
