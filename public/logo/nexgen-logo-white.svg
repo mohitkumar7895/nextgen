@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 120" width="100%" height="100%">
+  <defs>
+    <linearGradient id="blueGradW" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#079BEF" />
+      <stop offset="100%" stop-color="#FFFFFF" />
+    </linearGradient>
+    <linearGradient id="orangeGradW" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF6500" />
+      <stop offset="100%" stop-color="#FFB900" />
+    </linearGradient>
+    <filter id="glowW" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#079BEF" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- ICON / EMBLEM -->
+  <g transform="translate(15, 10)">
+    <rect x="0" y="0" width="100" height="100" rx="22" fill="#FFFFFF" opacity="0.08" />
+    
+    <!-- Left Pillar -->
+    <path d="M 22 82 L 22 28 C 22 22 27 18 33 18 L 37 18 C 42 18 46 22 46 28 L 46 82 C 46 87 42 91 37 91 L 33 91 C 27 91 22 87 22 82 Z" fill="#079BEF" filter="url(#glowW)" />
+    
+    <!-- Diagonal Dynamic Connector / Upward Arrow -->
+    <path d="M 33 24 L 75 72 C 78 75 80 80 77 84 C 74 88 68 87 64 83 L 26 38 C 23 35 24 30 28 26 C 30 24 32 23 33 24 Z" fill="url(#orangeGradW)" />
+    
+    <!-- Right Pillar -->
+    <path d="M 64 82 L 64 36 C 64 31 68 27 73 25 L 77 23 C 82 21 88 25 88 31 L 88 82 C 88 87 84 91 79 91 L 73 91 C 68 91 64 87 64 82 Z" fill="#FFFFFF" />
+
+    <!-- Upward Momentum Node -->
+    <circle cx="55" cy="22" r="10" fill="url(#orangeGradW)" />
+    <circle cx="55" cy="22" r="4" fill="#082C66" />
+  </g>
+
+  <!-- TYPOGRAPHY -->
+  <g transform="translate(135, 20)">
+    <!-- Brand Title: NEXGEN -->
+    <text x="0" y="44" font-family="'Outfit', 'Inter', 'Segoe UI', sans-serif" font-weight="900" font-size="44" fill="#FFFFFF" letter-spacing="1.5">
+      NEX<tspan fill="#FFB900">GEN</tspan>
+    </text>
+
+    <!-- Subtitle: WORKFORCE SERVICES -->
+    <text x="3" y="68" font-family="'Inter', 'Segoe UI', sans-serif" font-weight="700" font-size="14.5" fill="#079BEF" letter-spacing="5.5">
+      WORKFORCE SERVICES
+    </text>
+
+    <!-- Tagline: Build People, Build Success. -->
+    <g transform="translate(3, 85)">
+      <polygon points="0,3 4,0 8,3 4,6" fill="#FF6500" />
+      <text x="16" y="5" font-family="'Inter', 'Segoe UI', sans-serif" font-weight="600" font-size="11" fill="#E2E8F0" letter-spacing="1">
+        Build People, Build Success.
+      </text>
+    </g>
+  </g>
+</svg>
