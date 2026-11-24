@@ -17,7 +17,7 @@ const fallbackBlogs: BlogItem[] = [
     author: 'Nakul Chavada',
     read_time: '4 min read',
     image_url:
-      'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1581092162384-8987c1d64718?auto=format&fit=crop&w=800&q=80',
     is_featured: 1,
     status: 'published',
     excerpt:
@@ -51,7 +51,7 @@ const fallbackBlogs: BlogItem[] = [
     author: 'Nakul Chavada',
     read_time: '4 min read',
     image_url:
-      'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=800&q=80',
     is_featured: 1,
     status: 'published',
     excerpt:

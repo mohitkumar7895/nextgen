@@ -41,7 +41,7 @@ const fallbackServices = [
       'Storekeepers, warehouse assistants, inventory management staff, and packing and loading personnel for efficient logistics workflows.',
     icon_name: 'Package',
     image_url:
-      'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=800&q=80',
     key_responsibilities: [
       'Storekeepers & assistants',
       'Warehouse inventory staff',
@@ -58,7 +58,7 @@ const fallbackServices = [
       'Electricians, mechanical technicians, maintenance technicians, and industrial technical staff dedicated to sustaining maximum uptime.',
     icon_name: 'Wrench',
     image_url:
-      'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80',
     key_responsibilities: [
       'Certified industrial electricians',
       'Mechanical technicians & fitters',
