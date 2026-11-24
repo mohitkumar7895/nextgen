@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Users, Factory, Briefcase, Smile } from 'lucide-react';
+import { Users, Building2, Award, ShieldCheck, Factory, Briefcase, Smile } from 'lucide-react';
 import { StatisticItem } from '@/models/Settings';
 
 const fallbackStats: StatisticItem[] = [
@@ -17,38 +17,41 @@ const fallbackStats: StatisticItem[] = [
   },
   {
     id: 2,
-    stat_key: 'industries_served',
-    label: 'Industries Served',
-    value: '12+',
-    numeric_value: 12,
+    stat_key: 'active_clients',
+    label: 'Active Corporate Clients',
+    value: '350+',
+    numeric_value: 350,
     suffix: '+',
-    icon_name: 'Factory',
+    icon_name: 'Building2',
     display_order: 2,
   },
   {
     id: 3,
-    stat_key: 'skilled_professionals',
-    label: 'Skilled Professionals',
-    value: '3,500+',
-    numeric_value: 3500,
-    suffix: '+',
-    icon_name: 'Briefcase',
+    stat_key: 'retention_rate',
+    label: 'Client Retention Rate',
+    value: '99.2%',
+    numeric_value: 99,
+    suffix: '%',
+    icon_name: 'Award',
     display_order: 3,
   },
   {
     id: 4,
-    stat_key: 'happy_clients',
-    label: 'Happy Corporate Clients',
-    value: '150+',
-    numeric_value: 150,
-    suffix: '+',
-    icon_name: 'Smile',
+    stat_key: 'compliance_rate',
+    label: 'Statutory Compliance',
+    value: '100%',
+    numeric_value: 100,
+    suffix: '%',
+    icon_name: 'ShieldCheck',
     display_order: 4,
   },
 ];
 
 const iconMap: Record<string, any> = {
   Users,
+  Building2,
+  Award,
+  ShieldCheck,
   Factory,
   Briefcase,
   Smile,

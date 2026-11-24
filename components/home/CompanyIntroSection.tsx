@@ -32,7 +32,7 @@ export function CompanyIntroSection() {
               {/* Main Image Frame - clearly visible */}
               <div className="relative h-[320px] sm:h-[380px] rounded-3xl overflow-hidden shadow-xl border-4 border-white ring-1 ring-slate-200">
                 <Image
-                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1000&q=80"
+                  src="/images/hero/automobile-technicians.jpg"
                   alt="NexGen Workforce Operations in Gujarat"
                   fill
                   className="object-cover object-center brightness-[0.95]"

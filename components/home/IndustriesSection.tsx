@@ -20,11 +20,11 @@ const fallbackIndustries = [
   {
     id: 1,
     slug: 'manufacturing',
-    name: 'Manufacturing & Heavy Industry',
-    description: 'Line helpers, machine operators, assembly workers, and quality checkers for factories.',
+    name: 'Automobile & Industrial Manufacturing',
+    description: 'Assembly line operators, robotic welding technicians, component fabricators, and quality inspectors for automotive & heavy plants.',
     icon_name: 'Factory',
-    image_url: '/images/industries/manufacturing.jpg',
-    workforce_types: ['Line Helpers', 'Assembly Staff', 'Tool Operators'],
+    image_url: '/images/industries/automobile.jpg',
+    workforce_types: ['Assembly Line Staff', 'Robotic Welders', 'Quality Inspectors'],
   },
   {
     id: 2,

@@ -40,32 +40,31 @@ export function HeroSection() {
   const banners: BannerSlide[] = [
     {
       id: 1,
-      slideTag: '01 • Manpower Supply',
-      badge: 'Gujarat’s Trusted Workforce Partner • Bavla, Ahmedabad',
+      slideTag: '01 • Automobile & Industrial Staffing',
+      badge: 'Gujarat’s Premier Automotive & Plant Workforce Partner • Sanand • Bavla',
       badgeIcon: ShieldCheck,
-      headlinePrefix: 'Building Stronger',
-      headlineHighlight: 'Workforces.',
-      headlineSuffix: 'Empowering Better Businesses.',
+      headlinePrefix: 'Empowering Gujarat’s',
+      headlineHighlight: 'Automotive & Plant',
+      headlineSuffix: 'Manufacturing Workforces.',
       subheading:
         settings.hero_subheading ||
-        'Your Trusted Partner for Skilled Manpower, Professional Staffing and Reliable Workforce Solutions across industrial & corporate Gujarat.',
+        'Your Premier Partner for Automobile Assembly Lines, Industrial Machinery Plants, Technical Staffing, and Quality Workforce Solutions across Gujarat.',
       features: [
-        'Vetted & Verified Personnel',
+        'Automobile Assembly Specialists',
         '100% PF & ESIC Statutory Compliance',
-        'Rapid 24–48 Hr Fast Deployment',
+        'Rapid 24–48 Hr Plant Deployment',
       ],
       primaryBtnText: settings.hero_cta_primary_text || 'Get Workforce Solutions',
       primaryBtnLink: settings.hero_cta_primary_link || '/get-a-quote',
       secondaryBtnText: settings.hero_cta_secondary_text || 'Contact Our Team',
       secondaryBtnLink: settings.hero_cta_secondary_link || '/contact',
-      // Verified 200 OK industrial workforce photo
-      bgImage:
-        'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1400&q=75',
+      // Real Automotive Commercial Vehicle Assembly Plant Photo (User Verified)
+      bgImage: '/images/hero/automobile-assembly-line.jpg',
     },
     {
       id: 2,
-      slideTag: '02 • Technical Manpower',
-      badge: 'Certified Plant Specialists & Industrial Labor',
+      slideTag: '02 • Technical & Engineering Staff',
+      badge: 'Certified Plant Specialists & Industrial Technicians',
       badgeIcon: Wrench,
       headlinePrefix: 'Certified',
       headlineHighlight: 'Technical Manpower',
@@ -81,9 +80,8 @@ export function HeroSection() {
       primaryBtnLink: '/services/technical-manpower',
       secondaryBtnText: 'Hire Plant Technicians',
       secondaryBtnLink: '/get-a-quote?category=Technical+Manpower',
-      // Verified 200 OK industrial engineer plant photo
-      bgImage:
-        'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1400&q=75',
+      // High-Tech Industrial Robotics & Precision Assembly
+      bgImage: '/images/hero/automobile-robotics.jpg',
     },
     {
       id: 3,
@@ -104,9 +102,8 @@ export function HeroSection() {
       primaryBtnLink: '/services/store-warehouse',
       secondaryBtnText: 'Request Headcount Quote',
       secondaryBtnLink: '/get-a-quote?category=Store+%26+Warehouse+Staff',
-      // Verified 200 OK logistics warehouse depot photo
-      bgImage:
-        'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1400&q=75',
+      // Modern High-Capacity Manufacturing Facility
+      bgImage: '/images/hero/automobile-plant-1.jpg',
     },
   ];
 
