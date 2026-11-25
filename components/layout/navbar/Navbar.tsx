@@ -17,6 +17,7 @@ import {
   Building2,
   Users,
   ShieldCheck,
+  Utensils,
 } from 'lucide-react';
 import { useSite } from '@/context/SiteContext';
 
@@ -44,6 +45,18 @@ const coreServices = [
     slug: 'driver-services',
     desc: 'Commercial transport & executive chauffeurs',
     icon: Truck,
+  },
+  {
+    title: 'Company Security Guard Supply',
+    slug: 'security-services',
+    desc: 'Certified industrial guards & perimeter security',
+    icon: ShieldCheck,
+  },
+  {
+    title: 'Industrial Canteen Services',
+    slug: 'industrial-canteen',
+    desc: 'Turnkey factory canteen & catering workforce',
+    icon: Utensils,
   },
 ];
 

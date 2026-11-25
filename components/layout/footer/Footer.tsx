@@ -26,7 +26,7 @@ export function Footer() {
   const contactName = settings.client_contact_name || 'CHAVADA NAKUL';
   const address =
     settings.contact_address ||
-    'Ratna Sagar, 1st Floor, Shop No. A-105, Survey No. 335 A/B/K, Near Kerala Bridge, Bavla, Ahmedabad, Gujarat – 382220, India.';
+    'Ratna Sagar, 1st Floor, Shop No. A-105, Survey No. 335 A/B/K, Near Kerala Bridge (Plus Code: Q8JF+VHG), Kerala, Bavla, Ahmedabad, Gujarat – 382220, India.';
 
   return (
     <footer className="bg-brand-navy text-slate-300 pt-16 pb-8 border-t border-brand-blue/30 relative overflow-hidden">
@@ -161,6 +161,18 @@ export function Footer() {
                 <Link href="/services/driver-services" className="hover:text-brand-bright transition-colors block">
                   <span className="font-semibold text-white">Driver Services</span>
                   <span className="block text-slate-400 text-xs">Commercial transport drivers</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/services/security-services" className="hover:text-brand-bright transition-colors block">
+                  <span className="font-semibold text-white">Company Security Guard Supply</span>
+                  <span className="block text-slate-400 text-xs">Certified plant guards & gate security</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/services/industrial-canteen" className="hover:text-brand-bright transition-colors block">
+                  <span className="font-semibold text-white">Industrial Canteen Services</span>
+                  <span className="block text-slate-400 text-xs">Factory cooks & catering management</span>
                 </Link>
               </li>
             </ul>

@@ -11,6 +11,8 @@ import {
   ArrowRight,
   CheckCircle2,
   Briefcase,
+  ShieldCheck,
+  Utensils,
 } from 'lucide-react';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 
@@ -83,6 +85,38 @@ const fallbackServices = [
       'Pre-trip safety & log tracking',
     ],
   },
+  {
+    id: 5,
+    slug: 'security-services',
+    title: 'Company Security Guard Supply',
+    subtitle: 'Licensed Corporate & Industrial Security Guards',
+    short_description:
+      'Certified security guard supply, factory gate security, material inward-outward logs, perimeter surveillance, and 24/7 corporate asset protection across Gujarat.',
+    icon_name: 'ShieldCheck',
+    image_url: '/images/services/security-service.jpg',
+    key_responsibilities: [
+      '24/7 Factory gate access control',
+      'Material inward/outward delivery logs',
+      'Perimeter foot patrolling & vigilance',
+      'CCTV monitoring & emergency response',
+    ],
+  },
+  {
+    id: 6,
+    slug: 'industrial-canteen',
+    title: 'Industrial Canteen Services',
+    subtitle: 'Turnkey Factory Canteen & Catering Staffing',
+    short_description:
+      'End-to-end industrial canteen management, professional commercial head cooks, kitchen helpers, hygienic food serving, and scheduled meal operations for industrial shifts.',
+    icon_name: 'Utensils',
+    image_url: '/images/services/canteen-service.jpg',
+    key_responsibilities: [
+      'Shift-wise hot meal & snack preparation',
+      'FSSAI food hygiene & sanitized cooking',
+      'Punctual food serving & buffet management',
+      'Commercial dishwashing & kitchen sanitization',
+    ],
+  },
 ];
 
 const iconMap: Record<string, any> = {
@@ -91,6 +125,8 @@ const iconMap: Record<string, any> = {
   Wrench,
   Truck,
   Briefcase,
+  ShieldCheck,
+  Utensils,
 };
 
 export function ServicesSection() {
@@ -117,7 +153,7 @@ export function ServicesSection() {
           description="Tailored staffing categories designed to meet stringent industry standards, increase throughput, and eliminate operational bottlenecks."
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           {services.map((svc) => {
             const IconComponent = iconMap[svc.icon_name] || Briefcase;
             const highlights = Array.isArray(svc.key_responsibilities)

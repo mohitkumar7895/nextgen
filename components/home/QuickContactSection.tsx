@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import {
   Phone,
   Mail,
@@ -10,6 +11,8 @@ import {
   FileCheck2,
   User,
   MessageCircle,
+  Navigation,
+  ExternalLink,
 } from 'lucide-react';
 import { useSite } from '@/context/SiteContext';
 import { SectionHeading } from '@/components/ui/SectionHeading';
@@ -32,12 +35,15 @@ export function QuickContactSection() {
   const email = settings.contact_email || 'nexgenworkforce@gmail.com';
   const address =
     settings.contact_address ||
-    'Ratna Sagar, 1st Floor, Shop No. A-105, Survey No. 335 A/B/K, Near Kerala Bridge, Bavla, Ahmedabad, Gujarat – 382220, India.';
+    'Ratna Sagar, 1st Floor, Shop No. A-105, Survey No. 335 A/B/K, Near Kerala Bridge (Plus Code: Q8JF+VHG), Kerala, Bavla, Ahmedabad, Gujarat – 382220, India.';
   const gst = settings.contact_gst_number || '24CEOPC1058Q1Z6';
   const contactName = settings.client_contact_name || 'CHAVADA NAKUL';
   const mapEmbed =
     settings.contact_map_embed ||
-    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14697.55018654817!2d72.35515286576882!3d22.843793754432095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e865f9ff7ff25%3A0xbc7d54b726487e41!2sBavla%2C%20Gujarat%20382220!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin';
+    'https://maps.google.com/maps?q=22.781100,72.324649&hl=en&z=17&output=embed';
+  const plusCode = settings.contact_plus_code || 'Q8JF+VHG, Kerala, Gujarat 382220, India';
+  const coordinates = `${settings.contact_latitude || '22.781100'}, ${settings.contact_longitude || '72.324649'}`;
+  const directMapsUrl = `https://maps.google.com/?q=${encodeURIComponent(coordinates)}`;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -119,10 +125,25 @@ _Sent via NexGen Workforce Services Contact Form_`;
                 <div className="flex items-start gap-2.5">
                   <MapPin className="w-4 h-4 text-brand-orange shrink-0 mt-0.5" />
                   <div>
-                    <strong className="block text-brand-navy font-semibold text-xs">Address</strong>
-                    <span className="text-slate-600 leading-snug text-xs">
+                    <strong className="block text-brand-navy font-semibold text-xs">Registered Office Address</strong>
+                    <span className="text-slate-600 leading-snug text-xs block">
                       {address}
                     </span>
+                    <div className="mt-1.5 flex flex-wrap items-center gap-2">
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-50 border border-emerald-200 text-[11px] font-bold text-emerald-700">
+                        <Navigation className="w-3 h-3 text-emerald-600" />
+                        Plus Code: {plusCode}
+                      </span>
+                      <a
+                        href={directMapsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-[11px] font-semibold text-brand-blue hover:text-brand-orange hover:underline"
+                      >
+                        <ExternalLink className="w-3 h-3" />
+                        Open in Google Maps ({coordinates})
+                      </a>
+                    </div>
                   </div>
                 </div>
 
@@ -172,6 +193,30 @@ _Sent via NexGen Workforce Services Contact Form_`;
                     </span>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            {/* Verified Office & Desk Image */}
+            <div className="rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200 shadow-sm relative h-52 sm:h-56 w-full">
+              <Image
+                src="/images/office/office-location.jpg"
+                alt="NexGen Registered Office - Nakul Chavada (Kerala, Bavla)"
+                fill
+                sizes="(max-width: 768px) 100vw, 40vw"
+                className="object-cover object-top"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-black/25 to-transparent" />
+              <div className="absolute bottom-3 left-4 right-4 text-white">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-600/90 text-[10px] font-bold text-white mb-1 shadow">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                  <span>GPS Lat: 22.781100, Long: 72.324649</span>
+                </div>
+                <p className="text-xs font-bold text-white">
+                  Headquarters & Operations Desk • Kerala / Bavla
+                </p>
+                <p className="text-[11px] text-slate-300">
+                  {contactName} (Founder & Proprietor)
+                </p>
               </div>
             </div>
 

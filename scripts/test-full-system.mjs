@@ -71,15 +71,15 @@ async function runTests() {
     failed++;
   }
 
-  // TEST 3: Core Services
+  // TEST 3: Core Services (including Security Guard Supply & Industrial Canteen)
   try {
     const [services] = await db.query('SELECT slug, title, status FROM services ORDER BY display_order ASC;');
     const slugs = services.map(s => s.slug);
-    const expected = ['housekeeping', 'store-warehouse', 'technical-manpower', 'driver-services'];
+    const expected = ['housekeeping', 'store-warehouse', 'technical-manpower', 'driver-services', 'security-services', 'industrial-canteen'];
     const hasAll = expected.every(e => slugs.includes(e));
 
-    if (hasAll && services.length >= 4) {
-      console.log(`[PASS] Test 3: Verified 4 core services exist: ${slugs.join(', ')}.`);
+    if (hasAll && services.length >= 6) {
+      console.log(`[PASS] Test 3: Verified ${services.length} core services exist: ${slugs.join(', ')}.`);
       passed++;
     } else {
       console.error('[FAIL] Test 3: Missing core services');

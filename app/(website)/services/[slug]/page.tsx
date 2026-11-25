@@ -15,6 +15,7 @@ import {
   Briefcase,
   Phone,
   MessageCircle,
+  Utensils,
 } from 'lucide-react';
 import { ServiceModel } from '@/models/Service';
 import { InquiryForm } from '@/components/forms/InquiryForm';
@@ -28,6 +29,8 @@ const iconMap: Record<string, any> = {
   Wrench,
   Truck,
   Briefcase,
+  ShieldCheck,
+  Utensils,
 };
 
 export async function generateMetadata({

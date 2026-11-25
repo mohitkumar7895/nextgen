@@ -21,9 +21,10 @@ const manpowerCategories = [
   'Store & Warehouse Staff',
   'Technical Manpower (Electricians/Fitters)',
   'Driver Services (Commercial/Chauffeur)',
+  'Company Security Guard Supply',
+  'Industrial Canteen Services',
   'Factory Assembly Line Workers',
   'Construction & Site Helpers',
-  'Security & Facility Support Staff',
   'Other / Customized Manpower',
 ];
 

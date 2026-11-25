@@ -14,7 +14,7 @@ import { InquiryForm } from '@/components/forms/InquiryForm';
 export const metadata = {
   title: 'Get a Workforce Quote | NEXGEN WORKFORCE SERVICES - Gujarat',
   description:
-    'Request a custom staffing proposal for skilled technicians, warehouse staff, housekeeping, or commercial drivers for your business.',
+    'Request a custom staffing proposal for skilled technicians, warehouse staff, housekeeping, security guards, industrial canteen, or commercial drivers for your business.',
 };
 
 export default function GetAQuotePage({

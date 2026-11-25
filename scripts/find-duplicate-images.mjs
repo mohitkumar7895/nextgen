@@ -42,8 +42,9 @@ async function run() {
   record('/images/hero/automobile-robotics.jpg', 'HeroSection: Banner 2 (Automotive Precision Robotics)');
   record('/images/hero/automobile-plant-1.jpg', 'HeroSection: Banner 3 (Automotive Logistics & Vehicle Plant)');
 
-  // 2. About Us
+  // 2. About Us & Office Location
   record('/images/about/about-operations.jpg', 'CompanyIntroSection: Operations Manager & Plant Floor');
+  record('/images/office/office-location.jpg', 'QuickContactSection: Registered Office & Nakul Chavada Desk');
 
   // 3. MySQL Database entries
   try {

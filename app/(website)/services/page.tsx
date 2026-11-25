@@ -11,6 +11,7 @@ import {
   Briefcase,
   ShieldCheck,
   Building,
+  Utensils,
 } from 'lucide-react';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { CtaBanner } from '@/components/home/CtaBanner';
@@ -19,7 +20,7 @@ import { ServiceModel } from '@/models/Service';
 export const metadata = {
   title: 'Workforce Services | NEXGEN WORKFORCE SERVICES - Gujarat, India',
   description:
-    'Comprehensive manpower supply: Housekeeping Services, Store & Warehouse Staff, Technical Manpower, and Driver Services across Gujarat.',
+    'Comprehensive manpower supply: Housekeeping Services, Store & Warehouse Staff, Technical Manpower, Driver Services, Company Security Guard Supply, and Industrial Canteen Services across Gujarat.',
 };
 
 export const dynamic = 'force-dynamic';
@@ -30,6 +31,8 @@ const iconMap: Record<string, any> = {
   Wrench,
   Truck,
   Briefcase,
+  ShieldCheck,
+  Utensils,
 };
 
 export default async function ServicesPage() {
