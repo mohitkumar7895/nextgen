@@ -28,9 +28,10 @@ INSERT INTO `site_settings` (`setting_key`, `setting_value`, `setting_group`, `d
 ('contact_pincode', '382220', 'contact', 'PIN Code'),
 ('contact_country', 'India', 'contact', 'Country'),
 ('contact_plus_code', 'Q8JF+VHG, Kerala, Gujarat 382220, India', 'contact', 'Google Plus Code'),
-('contact_latitude', '22.781100', 'contact', 'GPS Latitude'),
-('contact_longitude', '72.324649', 'contact', 'GPS Longitude'),
-('contact_map_embed', 'https://maps.google.com/maps?q=22.781100,72.324649&hl=en&z=17&output=embed', 'contact', 'Google Maps Embed URL'),
+('contact_latitude', '22.780855', 'contact', 'GPS Latitude'),
+('contact_longitude', '72.3246883', 'contact', 'GPS Longitude'),
+('contact_map_embed', 'https://maps.google.com/maps?q=22.780855,72.3246883&hl=en&z=17&output=embed', 'contact', 'Google Maps Embed URL'),
+('contact_map_url', 'https://www.google.com/maps/place/22%C2%B046%2751.1%22N+72%C2%B019%2728.9%22E/@22.780855,72.3221134,17z/data=!3m1!4b1!4m4!3m3!8m2!3d22.780855!4d72.3246883?hl=en', 'contact', 'Direct Google Maps Pin URL'),
 
 -- Hero Section Settings
 ('hero_heading', 'Building Stronger Workforces. Empowering Better Businesses.', 'hero', 'Homepage Hero Main Headline'),

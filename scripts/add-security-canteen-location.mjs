@@ -146,14 +146,16 @@ async function run() {
 
   // 3. UPDATE SITE SETTINGS WITH EXACT GPS LOCATION FROM USER PHOTO
   const exactAddress = 'Ratna Sagar, 1st Floor, Shop No. A-105, Survey No. 335 A/B/K, Near Kerala Bridge (Plus Code: Q8JF+VHG), Kerala, Bavla, Ahmedabad, Gujarat – 382220, India.';
-  const mapEmbedUrl = 'https://maps.google.com/maps?q=22.781100,72.324649&hl=en&z=17&output=embed';
+  const mapEmbedUrl = 'https://maps.google.com/maps?q=22.780855,72.3246883&hl=en&z=17&output=embed';
+  const directMapUrl = 'https://www.google.com/maps/place/22%C2%B046%2751.1%22N+72%C2%B019%2728.9%22E/@22.780855,72.3221134,17z/data=!3m1!4b1!4m4!3m3!8m2!3d22.780855!4d72.3246883?hl=en';
 
   const settingsToUpdate = [
     { key: 'contact_address', value: exactAddress, group: 'contact', desc: 'Full Registered Address with Plus Code' },
     { key: 'contact_map_embed', value: mapEmbedUrl, group: 'contact', desc: 'Google Maps Embed URL' },
+    { key: 'contact_map_url', value: directMapUrl, group: 'contact', desc: 'Direct Google Maps Pin URL' },
     { key: 'contact_plus_code', value: 'Q8JF+VHG, Kerala, Gujarat 382220, India', group: 'contact', desc: 'Google Plus Code' },
-    { key: 'contact_latitude', value: '22.781100', group: 'contact', desc: 'GPS Latitude' },
-    { key: 'contact_longitude', value: '72.324649', group: 'contact', desc: 'GPS Longitude' },
+    { key: 'contact_latitude', value: '22.780855', group: 'contact', desc: 'GPS Latitude' },
+    { key: 'contact_longitude', value: '72.3246883', group: 'contact', desc: 'GPS Longitude' },
     { key: 'contact_locality', value: 'Kerala / Near Kerala Bridge, Bavla', group: 'contact', desc: 'Locality' }
   ];
 

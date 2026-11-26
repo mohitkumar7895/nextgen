@@ -38,12 +38,16 @@ export function QuickContactSection() {
     'Ratna Sagar, 1st Floor, Shop No. A-105, Survey No. 335 A/B/K, Near Kerala Bridge (Plus Code: Q8JF+VHG), Kerala, Bavla, Ahmedabad, Gujarat – 382220, India.';
   const gst = settings.contact_gst_number || '24CEOPC1058Q1Z6';
   const contactName = settings.client_contact_name || 'CHAVADA NAKUL';
+  const latitude = settings.contact_latitude || '22.780855';
+  const longitude = settings.contact_longitude || '72.3246883';
   const mapEmbed =
     settings.contact_map_embed ||
-    'https://maps.google.com/maps?q=22.781100,72.324649&hl=en&z=17&output=embed';
+    'https://maps.google.com/maps?q=22.780855,72.3246883&hl=en&z=17&output=embed';
   const plusCode = settings.contact_plus_code || 'Q8JF+VHG, Kerala, Gujarat 382220, India';
-  const coordinates = `${settings.contact_latitude || '22.781100'}, ${settings.contact_longitude || '72.324649'}`;
-  const directMapsUrl = `https://maps.google.com/?q=${encodeURIComponent(coordinates)}`;
+  const coordinates = `${latitude}, ${longitude}`;
+  const directMapsUrl =
+    settings.contact_map_url ||
+    'https://www.google.com/maps/place/22%C2%B046%2751.1%22N+72%C2%B019%2728.9%22E/@22.780855,72.3221134,17z/data=!3m1!4b1!4m4!3m3!8m2!3d22.780855!4d72.3246883?hl=en';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -209,7 +213,7 @@ _Sent via NexGen Workforce Services Contact Form_`;
               <div className="absolute bottom-3 left-4 right-4 text-white">
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-600/90 text-[10px] font-bold text-white mb-1 shadow">
                   <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                  <span>GPS Lat: 22.781100, Long: 72.324649</span>
+                  <span>GPS Lat: {latitude}, Long: {longitude}</span>
                 </div>
                 <p className="text-xs font-bold text-white">
                   Headquarters & Operations Desk • Kerala / Bavla

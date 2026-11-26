@@ -27,6 +27,9 @@ export function Footer() {
   const address =
     settings.contact_address ||
     'Ratna Sagar, 1st Floor, Shop No. A-105, Survey No. 335 A/B/K, Near Kerala Bridge (Plus Code: Q8JF+VHG), Kerala, Bavla, Ahmedabad, Gujarat – 382220, India.';
+  const mapsUrl =
+    settings.contact_map_url ||
+    'https://www.google.com/maps/place/22%C2%B046%2751.1%22N+72%C2%B019%2728.9%22E/@22.780855,72.3221134,17z/data=!3m1!4b1!4m4!3m3!8m2!3d22.780855!4d72.3246883?hl=en';
 
   return (
     <footer className="bg-brand-navy text-slate-300 pt-16 pb-8 border-t border-brand-blue/30 relative overflow-hidden">
@@ -188,7 +191,18 @@ export function Footer() {
             <div className="space-y-3 text-xs leading-relaxed">
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-brand-orange shrink-0 mt-0.5" />
-                <span className="text-slate-300">{address}</span>
+                <div>
+                  <span className="text-slate-300 block">{address}</span>
+                  <a
+                    href={mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-brand-bright hover:text-brand-orange transition-colors mt-1 font-semibold"
+                  >
+                    <span>View on Google Maps</span>
+                    <ArrowRight className="w-3 h-3" />
+                  </a>
+                </div>
               </div>
 
               <div className="flex items-center gap-2.5">
