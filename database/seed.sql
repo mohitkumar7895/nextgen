@@ -150,10 +150,10 @@ ON DUPLICATE KEY UPDATE `name`=VALUES(`name`), `description`=VALUES(`description
 -- 5. STATISTICS
 INSERT INTO `statistics` (`id`, `stat_key`, `label`, `value`, `numeric_value`, `suffix`, `icon_name`, `display_order`) VALUES
 (1, 'workforce_deployed', 'Workforce Deployed', '5,000+', 5000, '+', 'Users', 1),
-(2, 'active_clients', 'Active Corporate Clients', '350+', 350, '+', 'Building2', 2),
-(3, 'retention_rate', 'Client Retention Rate', '99.2%', 99, '%', 'Award', 3),
-(4, 'compliance_rate', 'Statutory Compliance', '100%', 100, '%', 'ShieldCheck', 4)
-ON DUPLICATE KEY UPDATE `label`=VALUES(`label`), `value`=VALUES(`value`), `numeric_value`=VALUES(`numeric_value`), `suffix`=VALUES(`suffix`), `icon_name`=VALUES(`icon_name`);
+(2, 'industries_served', 'Industries Served', '8+', 8, '+', 'Factory', 2),
+(3, 'skilled_professionals', 'Skilled Professionals', '1,200+', 1200, '+', 'Briefcase', 3),
+(4, 'happy_clients', 'Happy Corporate Clients', '150+', 150, '+', 'Smile', 4)
+ON DUPLICATE KEY UPDATE `stat_key`=VALUES(`stat_key`), `label`=VALUES(`label`), `value`=VALUES(`value`), `numeric_value`=VALUES(`numeric_value`), `suffix`=VALUES(`suffix`), `icon_name`=VALUES(`icon_name`);
 
 -- 6. TESTIMONIALS
 INSERT INTO `testimonials` (`id`, `client_name`, `client_designation`, `company_name`, `feedback`, `rating`, `avatar_url`, `status`, `display_order`) VALUES

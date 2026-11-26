@@ -36,7 +36,7 @@ async function updateData() {
 
   console.log('Connected to MySQL...');
 
-  // 1. UPDATE STATISTICS: Replace confusing "12+ industries" and "150+ happy clients" with rock-solid metrics
+  // 1. UPDATE STATISTICS: Set 8+ Industries Served and 1,200+ Skilled Professionals
   const newStats = [
     {
       id: 1,
@@ -50,32 +50,32 @@ async function updateData() {
     },
     {
       id: 2,
-      stat_key: 'active_clients',
-      label: 'Active Corporate Clients',
-      value: '350+',
-      numeric_value: 350,
+      stat_key: 'industries_served',
+      label: 'Industries Served',
+      value: '8+',
+      numeric_value: 8,
       suffix: '+',
-      icon_name: 'Building2',
+      icon_name: 'Factory',
       display_order: 2,
     },
     {
       id: 3,
-      stat_key: 'retention_rate',
-      label: 'Client Retention Rate',
-      value: '99.2%',
-      numeric_value: 99,
-      suffix: '%',
-      icon_name: 'Award',
+      stat_key: 'skilled_professionals',
+      label: 'Skilled Professionals',
+      value: '1,200+',
+      numeric_value: 1200,
+      suffix: '+',
+      icon_name: 'Briefcase',
       display_order: 3,
     },
     {
       id: 4,
-      stat_key: 'compliance_rate',
-      label: 'Statutory Compliance',
-      value: '100%',
-      numeric_value: 100,
-      suffix: '%',
-      icon_name: 'ShieldCheck',
+      stat_key: 'happy_clients',
+      label: 'Happy Corporate Clients',
+      value: '150+',
+      numeric_value: 150,
+      suffix: '+',
+      icon_name: 'Smile',
       display_order: 4,
     },
   ];
