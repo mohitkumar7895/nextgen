@@ -3,15 +3,15 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { Lock, Mail, ArrowRight, ShieldCheck, Eye, EyeOff, AlertCircle } from 'lucide-react';
+import { Lock, Mail, ArrowRight, Eye, EyeOff, AlertCircle } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { toast } from 'sonner';
 
 export default function AdminLoginPage() {
   const router = useRouter();
   const { user, login } = useAuth();
-  const [email, setEmail] = useState('admin@nexgen.com');
-  const [password, setPassword] = useState('admin123');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -74,30 +74,6 @@ export default function AdminLoginPage() {
             </p>
           </div>
 
-          {/* Quick Demo Credentials Pill */}
-          <div className="mb-6 p-3.5 rounded-2xl bg-brand-light border border-slate-200 text-xs text-slate-700">
-            <div className="flex items-center justify-between font-bold text-brand-navy mb-1">
-              <span className="flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                Default Credentials
-              </span>
-              <button
-                type="button"
-                onClick={() => {
-                  setEmail('admin@nexgen.com');
-                  setPassword('admin123');
-                  toast.info('Credentials filled!');
-                }}
-                className="text-brand-blue hover:underline text-[11px]"
-              >
-                Auto-Fill
-              </button>
-            </div>
-            <div className="font-mono text-[11px] text-slate-600 space-y-0.5">
-              <p>Email: <strong>admin@nexgen.com</strong></p>
-              <p>Pass: <strong>admin123</strong></p>
-            </div>
-          </div>
 
           {errorMessage && (
             <div className="mb-5 p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center gap-2">
@@ -118,7 +94,7 @@ export default function AdminLoginPage() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="admin@nexgen.com"
+                  placeholder="Enter admin email"
                   className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue text-sm text-slate-800"
                 />
               </div>
