@@ -20,7 +20,11 @@ export async function GET(req: NextRequest) {
     }
 
     const services = await ServiceModel.getAllActive();
-    return NextResponse.json(services);
+    const res = NextResponse.json(services);
+    res.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0');
+    res.headers.set('Pragma', 'no-cache');
+    res.headers.set('Expires', '0');
+    return res;
   } catch (error: any) {
     return NextResponse.json({ error: error.message || 'Server error' }, { status: 500 });
   }

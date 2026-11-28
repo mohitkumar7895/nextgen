@@ -106,7 +106,10 @@ export function IndustriesSection() {
   const [industries, setIndustries] = useState<any[]>(fallbackIndustries);
 
   useEffect(() => {
-    fetch('/api/industries')
+    fetch(`/api/industries?_t=${Date.now()}`, {
+      cache: 'no-store',
+      headers: { 'Cache-Control': 'no-cache, no-store' },
+    })
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data) && data.length > 0) {

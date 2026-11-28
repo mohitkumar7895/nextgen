@@ -14,7 +14,11 @@ export async function GET(req: NextRequest) {
     const offset = searchParams.get('offset') ? parseInt(searchParams.get('offset')!, 10) : undefined;
 
     const data = await BlogModel.getAll({ status, category, search, limit, offset });
-    return NextResponse.json(data);
+    const res = NextResponse.json(data);
+    res.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0');
+    res.headers.set('Pragma', 'no-cache');
+    res.headers.set('Expires', '0');
+    return res;
   } catch (error: any) {
     console.error('Blogs API GET error:', error);
     return NextResponse.json({ error: error.message || 'Server error' }, { status: 500 });

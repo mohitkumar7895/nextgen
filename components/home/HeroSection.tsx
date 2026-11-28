@@ -58,8 +58,8 @@ export function HeroSection() {
       primaryBtnLink: settings.hero_cta_primary_link || '/get-a-quote',
       secondaryBtnText: settings.hero_cta_secondary_text || 'Contact Our Team',
       secondaryBtnLink: settings.hero_cta_secondary_link || '/contact',
-      // Real Automotive Commercial Vehicle Assembly Plant Photo (User Verified)
-      bgImage: '/images/hero/automobile-assembly-line.jpg',
+      // Real Automotive Commercial Vehicle Assembly Plant Photo (Dynamic from Admin or Default)
+      bgImage: settings.hero_slide_1_image || '/images/hero/automobile-assembly-line.jpg',
     },
     {
       id: 2,
@@ -80,8 +80,8 @@ export function HeroSection() {
       primaryBtnLink: '/services/technical-manpower',
       secondaryBtnText: 'Hire Plant Technicians',
       secondaryBtnLink: '/get-a-quote?category=Technical+Manpower',
-      // High-Tech Industrial Robotics & Precision Assembly
-      bgImage: '/images/hero/automobile-robotics.jpg',
+      // High-Tech Industrial Robotics & Precision Assembly (Dynamic from Admin or Default)
+      bgImage: settings.hero_slide_2_image || '/images/hero/automobile-robotics.jpg',
     },
     {
       id: 3,
@@ -102,8 +102,8 @@ export function HeroSection() {
       primaryBtnLink: '/services/store-warehouse',
       secondaryBtnText: 'Request Headcount Quote',
       secondaryBtnLink: '/get-a-quote?category=Store+%26+Warehouse+Staff',
-      // Modern High-Capacity Manufacturing Facility
-      bgImage: '/images/hero/automobile-plant-1.jpg',
+      // Modern High-Capacity Manufacturing Facility (Dynamic from Admin or Default)
+      bgImage: settings.hero_slide_3_image || '/images/hero/automobile-plant-1.jpg',
     },
   ];
 
@@ -157,6 +157,7 @@ export function HeroSection() {
                   alt={banner.badge}
                   fill
                   priority={index === 0}
+                  unoptimized={Boolean(banner.bgImage && !banner.bgImage.startsWith('/images/'))}
                   sizes="100vw"
                   className="object-cover object-center brightness-[0.92] contrast-[1.02]"
                 />
@@ -180,16 +181,24 @@ export function HeroSection() {
 
                   {/* Main Banner Headline - Using Regal Cinzel Display Serif with Platinum & Gold Sheen */}
                   <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black font-display tracking-tight text-white leading-[1.18] drop-shadow-md uppercase">
-                    <span className="gradient-text-platinum block sm:inline">
-                      {banner.headlinePrefix}{' '}
-                    </span>
-                    <span className="gradient-text-gold inline-block">
-                      {banner.headlineHighlight}
-                    </span>{' '}
-                    {banner.headlineSuffix && (
-                      <span className="text-white block sm:inline">
-                        {banner.headlineSuffix}
+                    {index === 0 && settings.hero_heading ? (
+                      <span className="gradient-text-platinum block">
+                        {settings.hero_heading}
                       </span>
+                    ) : (
+                      <>
+                        <span className="gradient-text-platinum block sm:inline">
+                          {banner.headlinePrefix}{' '}
+                        </span>
+                        <span className="gradient-text-gold inline-block">
+                          {banner.headlineHighlight}
+                        </span>{' '}
+                        {banner.headlineSuffix && (
+                          <span className="text-white block sm:inline">
+                            {banner.headlineSuffix}
+                          </span>
+                        )}
+                      </>
                     )}
                   </h1>
 

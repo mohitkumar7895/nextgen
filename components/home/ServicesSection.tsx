@@ -133,7 +133,10 @@ export function ServicesSection() {
   const [services, setServices] = useState<any[]>(fallbackServices);
 
   useEffect(() => {
-    fetch('/api/services')
+    fetch(`/api/services?_t=${Date.now()}`, {
+      cache: 'no-store',
+      headers: { 'Cache-Control': 'no-cache, no-store' },
+    })
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data) && data.length > 0) {

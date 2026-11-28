@@ -24,10 +24,15 @@ export interface SiteSettingsMap {
   hero_cta_primary_link?: string;
   hero_cta_secondary_text?: string;
   hero_cta_secondary_link?: string;
+  hero_slide_1_image?: string;
+  hero_slide_2_image?: string;
+  hero_slide_3_image?: string;
   company_intro_badge?: string;
   company_intro_heading?: string;
   company_intro_text?: string;
   company_intro_highlight?: string;
+  company_intro_image?: string;
+  office_location_image?: string;
   cta_heading?: string;
   cta_description?: string;
   cta_button_text?: string;
@@ -57,9 +62,14 @@ const defaultSettings: SiteSettingsMap = {
   hero_heading: 'Building Stronger Workforces. Empowering Better Businesses.',
   hero_subheading:
     'Your Trusted Partner for Skilled Manpower, Professional Staffing and Reliable Workforce Solutions.',
+  hero_slide_1_image: '/images/hero/automobile-assembly-line.jpg',
+  hero_slide_2_image: '/images/hero/automobile-robotics.jpg',
+  hero_slide_3_image: '/images/hero/automobile-plant-1.jpg',
   company_intro_heading: 'Your Trusted Workforce Partner',
   company_intro_text:
     'NexGen Workforce Services provides reliable, skilled and trained manpower solutions to businesses across multiple industries. We focus on delivering professional workforce support, dependable staffing services and quality manpower management.',
+  company_intro_image: '/images/about/about-operations.jpg',
+  office_location_image: '/images/office/office-location.jpg',
 };
 
 const SiteContext = createContext<SiteContextType>({
@@ -82,7 +92,10 @@ export function SiteProvider({
   const refreshSettings = async () => {
     try {
       setLoading(true);
-      const res = await fetch('/api/settings');
+      const res = await fetch(`/api/settings?_t=${Date.now()}`, {
+        cache: 'no-store',
+        headers: { 'Cache-Control': 'no-cache, no-store' },
+      });
       if (res.ok) {
         const data = await res.json();
         setSettings(prev => ({ ...prev, ...data }));
@@ -95,10 +108,22 @@ export function SiteProvider({
   };
 
   useEffect(() => {
-    if (!initialSettings) {
-      refreshSettings();
-    }
-  }, [initialSettings]);
+    refreshSettings();
+
+    const handleFocus = () => refreshSettings();
+    const handleStorage = (e: StorageEvent) => {
+      if (e.key === 'site_settings_updated') {
+        refreshSettings();
+      }
+    };
+
+    window.addEventListener('focus', handleFocus);
+    window.addEventListener('storage', handleStorage);
+    return () => {
+      window.removeEventListener('focus', handleFocus);
+      window.removeEventListener('storage', handleStorage);
+    };
+  }, []);
 
   const rawWhatsapp = settings.contact_whatsapp || '9727930894';
   const cleanPhone = rawWhatsapp.replace(/[^0-9]/g, '');

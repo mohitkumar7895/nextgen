@@ -21,6 +21,7 @@ import {
 import { BlogItem } from '@/models/Blog';
 import { formatShortDate } from '@/lib/utils';
 import { toast } from 'sonner';
+import { ImageUploadField } from '@/components/admin/ImageUploadField';
 
 const CATEGORIES = [
   'Workforce Management',
@@ -283,6 +284,7 @@ export default function AdminBlogsPage() {
                             src={b.image_url}
                             alt={b.title}
                             fill
+                            unoptimized={true}
                             className="object-cover object-center"
                           />
                         </div>
@@ -449,19 +451,13 @@ export default function AdminBlogsPage() {
                 </div>
               </div>
 
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
-                  Feature Image URL *
-                </label>
-                <input
-                  type="url"
-                  required
-                  value={formData.image_url}
-                  onChange={(e) => setFormData({ ...formData, image_url: e.target.value })}
-                  placeholder="https://images.unsplash.com/..."
-                  className="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue text-xs"
-                />
-              </div>
+              <ImageUploadField
+                label="Article Feature / Cover Image"
+                description="Displayed in blog grids, cards, and at the top of the article."
+                value={formData.image_url}
+                onChange={(url) => setFormData({ ...formData, image_url: url })}
+                category="blogs"
+              />
 
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">

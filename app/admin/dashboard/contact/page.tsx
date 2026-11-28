@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
 import { toast } from 'sonner';
+import { ImageUploadField } from '@/components/admin/ImageUploadField';
 
 export default function ContactManagementPage() {
   const [settings, setSettings] = useState<Record<string, string>>({});
@@ -63,6 +64,9 @@ export default function ContactManagementPage() {
       });
 
       if (res.ok) {
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('site_settings_updated', Date.now().toString());
+        }
         toast.success('Corporate contact information updated successfully!');
       } else {
         toast.error('Failed to update contact settings');
@@ -207,6 +211,15 @@ export default function ContactManagementPage() {
             className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-mono"
           />
         </div>
+
+        <ImageUploadField
+          label="Registered Office & Operations Desk Photo"
+          description="Photograph of the official office desk (Nakul Chavada / Kerala, Bavla) shown on the homepage and contact page."
+          value={settings.office_location_image || ''}
+          defaultImage="/images/office/office-location.jpg"
+          onChange={(url) => handleChange('office_location_image', url)}
+          category="office"
+        />
       </form>
 
       {/* Incoming Contact Messages Table */}

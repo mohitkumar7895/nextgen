@@ -195,6 +195,7 @@ export default function MediaManagementPage() {
                     src={m.file_url}
                     alt={m.alt_text || m.original_name}
                     fill
+                    unoptimized={true}
                     className="object-cover group-hover:scale-105 transition-transform"
                   />
                 </div>

@@ -1,8 +1,9 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Save, RefreshCw, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Save, RefreshCw, CheckCircle2, AlertCircle, ImageIcon } from 'lucide-react';
 import { toast } from 'sonner';
+import { ImageUploadField } from '@/components/admin/ImageUploadField';
 
 export default function ContentManagementPage() {
   const [settings, setSettings] = useState<Record<string, string>>({});
@@ -52,6 +53,9 @@ export default function ContentManagementPage() {
       });
 
       if (res.ok) {
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('site_settings_updated', Date.now().toString());
+        }
         toast.success('Website content saved successfully! Frontend reflects changes immediately.');
       } else {
         toast.error('Failed to save settings');
@@ -71,6 +75,10 @@ export default function ContentManagementPage() {
         body: JSON.stringify(stat),
       });
       if (res.ok) {
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('statistics_updated', Date.now().toString());
+          localStorage.setItem('site_settings_updated', Date.now().toString());
+        }
         toast.success(`Updated ${stat.label}`);
       } else {
         toast.error('Failed to update statistic');
@@ -197,11 +205,73 @@ export default function ContentManagementPage() {
           </div>
         </div>
 
-        {/* Section 2: Company Introduction Content */}
+        {/* Section 2: Website & Homepage Images Management */}
+        <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
+          <div className="border-b border-slate-100 pb-3 flex items-center justify-between">
+            <div>
+              <h2 className="text-lg font-bold font-display text-brand-navy flex items-center gap-2">
+                <ImageIcon className="w-5 h-5 text-brand-orange" />
+                <span>2. Homepage & Website Images (Direct Upload)</span>
+              </h2>
+              <p className="text-xs text-slate-500 mt-0.5">
+                Upload or change photos for the hero slider, company about section, and office desk. Changes update dynamically on save.
+              </p>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <ImageUploadField
+              label="Hero Slide 1 Background Image"
+              description="Automobile Assembly & Industrial Staffing slide background."
+              value={settings.hero_slide_1_image || ''}
+              defaultImage="/images/hero/automobile-assembly-line.jpg"
+              onChange={(url) => handleChange('hero_slide_1_image', url)}
+              category="hero"
+            />
+
+            <ImageUploadField
+              label="Hero Slide 2 Background Image"
+              description="Certified Technical & Engineering Manpower slide background."
+              value={settings.hero_slide_2_image || ''}
+              defaultImage="/images/hero/automobile-robotics.jpg"
+              onChange={(url) => handleChange('hero_slide_2_image', url)}
+              category="hero"
+            />
+
+            <ImageUploadField
+              label="Hero Slide 3 Background Image"
+              description="Warehouse, Logistics & Commercial Facilities slide background."
+              value={settings.hero_slide_3_image || ''}
+              defaultImage="/images/hero/automobile-plant-1.jpg"
+              onChange={(url) => handleChange('hero_slide_3_image', url)}
+              category="hero"
+            />
+
+            <ImageUploadField
+              label="About Us / Company Introduction Photo"
+              description="Displayed in the 'Your Trusted Workforce Partner' section on the homepage."
+              value={settings.company_intro_image || ''}
+              defaultImage="/images/about/about-operations.jpg"
+              onChange={(url) => handleChange('company_intro_image', url)}
+              category="about"
+            />
+
+            <ImageUploadField
+              label="Office Location & Management Desk Photo"
+              description="Displayed in the Registered Office & Quick Contact section (Founder & Proprietor Desk)."
+              value={settings.office_location_image || ''}
+              defaultImage="/images/office/office-location.jpg"
+              onChange={(url) => handleChange('office_location_image', url)}
+              category="office"
+            />
+          </div>
+        </div>
+
+        {/* Section 3: Company Introduction Content */}
         <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
           <div className="border-b border-slate-100 pb-3">
             <h2 className="text-lg font-bold font-display text-brand-navy">
-              2. Company Introduction
+              3. Company Introduction
             </h2>
             <p className="text-xs text-slate-500">
               Introduction title, main paragraph, and leadership highlight
@@ -247,11 +317,11 @@ export default function ContentManagementPage() {
           </div>
         </div>
 
-        {/* Section 3: Bottom Call to Action Banner */}
+        {/* Section 4: Bottom Call to Action Banner */}
         <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
           <div className="border-b border-slate-100 pb-3">
             <h2 className="text-lg font-bold font-display text-brand-navy">
-              3. Call-To-Action (CTA) Banner
+              4. Call-To-Action (CTA) Banner
             </h2>
             <p className="text-xs text-slate-500">
               Heading and text for bottom lead generation banner
@@ -286,11 +356,11 @@ export default function ContentManagementPage() {
         </div>
       </form>
 
-      {/* Section 4: Animated Statistics Editor */}
+      {/* Section 5: Animated Statistics Editor */}
       <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
         <div className="border-b border-slate-100 pb-3">
           <h2 className="text-lg font-bold font-display text-brand-navy">
-            4. Animated Statistics (Counters)
+            5. Animated Statistics (Counters)
           </h2>
           <p className="text-xs text-slate-500">
             Edit displayed numbers, labels, and suffixes on the live counter bar

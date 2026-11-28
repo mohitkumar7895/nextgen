@@ -203,9 +203,10 @@ _Sent via NexGen Workforce Services Contact Form_`;
             {/* Verified Office & Desk Image */}
             <div className="rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200 shadow-sm relative h-52 sm:h-56 w-full">
               <Image
-                src="/images/office/office-location.jpg"
+                src={settings.office_location_image || '/images/office/office-location.jpg'}
                 alt="NexGen Registered Office - Nakul Chavada (Kerala, Bavla)"
                 fill
+                unoptimized={Boolean(settings.office_location_image)}
                 sizes="(max-width: 768px) 100vw, 40vw"
                 className="object-cover object-top"
               />

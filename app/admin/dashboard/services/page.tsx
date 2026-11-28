@@ -20,6 +20,7 @@ import {
   Save,
 } from 'lucide-react';
 import { toast } from 'sonner';
+import { ImageUploadField } from '@/components/admin/ImageUploadField';
 
 const defaultEmptyService = {
   id: 0,
@@ -305,37 +306,27 @@ export default function ServicesManagementPage() {
                 </div>
               </div>
 
-              {/* Image & Banner URLs */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                    Thumbnail Image URL
-                  </label>
-                  <input
-                    type="text"
-                    value={editingService.image_url || ''}
-                    onChange={(e) =>
-                      setEditingService({ ...editingService, image_url: e.target.value })
-                    }
-                    placeholder="https://images.unsplash.com/..."
-                    className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs"
-                  />
-                </div>
+              {/* Image & Banner Upload Fields */}
+              <div className="space-y-4">
+                <ImageUploadField
+                  label="Service Thumbnail Image"
+                  description="Displayed in services grid, cards, and homepage highlights."
+                  value={editingService.image_url || ''}
+                  onChange={(url) =>
+                    setEditingService({ ...editingService, image_url: url })
+                  }
+                  category="services"
+                />
 
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                    Header Banner URL
-                  </label>
-                  <input
-                    type="text"
-                    value={editingService.banner_url || ''}
-                    onChange={(e) =>
-                      setEditingService({ ...editingService, banner_url: e.target.value })
-                    }
-                    placeholder="https://images.unsplash.com/..."
-                    className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs"
-                  />
-                </div>
+                <ImageUploadField
+                  label="Service Header Banner Image"
+                  description="Displayed at the top of the individual service details page."
+                  value={editingService.banner_url || ''}
+                  onChange={(url) =>
+                    setEditingService({ ...editingService, banner_url: url })
+                  }
+                  category="services"
+                />
               </div>
 
               {/* Responsibilities Dynamic List */}

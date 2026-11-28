@@ -7,7 +7,11 @@ import { getAdminSession } from '@/lib/auth';
 export async function GET() {
   try {
     const settings = await SettingsModel.getAllSettings();
-    return NextResponse.json(settings);
+    const res = NextResponse.json(settings);
+    res.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0');
+    res.headers.set('Pragma', 'no-cache');
+    res.headers.set('Expires', '0');
+    return res;
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }

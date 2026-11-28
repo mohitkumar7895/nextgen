@@ -66,7 +66,10 @@ export function BlogSection() {
   const [blogs, setBlogs] = useState<BlogItem[]>(fallbackBlogs);
 
   useEffect(() => {
-    fetch('/api/blogs?status=published&limit=3')
+    fetch(`/api/blogs?status=published&limit=3&_t=${Date.now()}`, {
+      cache: 'no-store',
+      headers: { 'Cache-Control': 'no-cache, no-store' },
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.blogs && Array.isArray(data.blogs) && data.blogs.length > 0) {

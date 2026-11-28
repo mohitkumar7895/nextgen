@@ -9,7 +9,11 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const all = searchParams.get('all') === 'true';
     const industries = await SettingsModel.getIndustries(!all);
-    return NextResponse.json(industries);
+    const res = NextResponse.json(industries);
+    res.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0');
+    res.headers.set('Pragma', 'no-cache');
+    res.headers.set('Expires', '0');
+    return res;
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }

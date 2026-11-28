@@ -32,9 +32,10 @@ export function CompanyIntroSection() {
               {/* Main Image Frame - clearly visible */}
               <div className="relative h-[320px] sm:h-[380px] rounded-3xl overflow-hidden shadow-xl border-4 border-white ring-1 ring-slate-200">
                 <Image
-                  src="/images/about/about-operations.jpg"
+                  src={settings.company_intro_image || '/images/about/about-operations.jpg'}
                   alt="NexGen Workforce Operations in Gujarat"
                   fill
+                  unoptimized={Boolean(settings.company_intro_image)}
                   className="object-cover object-center brightness-[0.95]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/85 via-transparent to-transparent" />
