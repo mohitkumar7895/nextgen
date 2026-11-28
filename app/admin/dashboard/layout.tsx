@@ -20,6 +20,7 @@ import {
   ShieldCheck,
   ChevronRight,
   BookOpen,
+  Factory,
 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { LoadingScreen } from '@/components/ui/LoadingScreen';
@@ -28,6 +29,7 @@ const navItems = [
   { name: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
   { name: 'Website Content', href: '/admin/dashboard/content', icon: FileText },
   { name: 'Services Management', href: '/admin/dashboard/services', icon: Briefcase },
+  { name: 'Industries Management', href: '/admin/dashboard/industries', icon: Factory },
   { name: 'Blog & Articles', href: '/admin/dashboard/blogs', icon: BookOpen },
   { name: 'Inquiries & Quotes', href: '/admin/dashboard/inquiries', icon: Users },
   { name: 'Contact & Messages', href: '/admin/dashboard/contact', icon: MessageSquare },

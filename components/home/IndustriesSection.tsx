@@ -105,7 +105,7 @@ const iconMap: Record<string, any> = {
 export function IndustriesSection() {
   const [industries, setIndustries] = useState<any[]>(fallbackIndustries);
 
-  useEffect(() => {
+  const fetchIndustries = () => {
     fetch(`/api/industries?_t=${Date.now()}`, {
       cache: 'no-store',
       headers: { 'Cache-Control': 'no-cache, no-store' },
@@ -117,6 +117,24 @@ export function IndustriesSection() {
         }
       })
       .catch(() => {});
+  };
+
+  useEffect(() => {
+    fetchIndustries();
+
+    const handleFocus = () => fetchIndustries();
+    const handleStorage = (e: StorageEvent) => {
+      if (e.key === 'industries_updated') {
+        fetchIndustries();
+      }
+    };
+
+    window.addEventListener('focus', handleFocus);
+    window.addEventListener('storage', handleStorage);
+    return () => {
+      window.removeEventListener('focus', handleFocus);
+      window.removeEventListener('storage', handleStorage);
+    };
   }, []);
 
   return (
@@ -154,6 +172,7 @@ export function IndustriesSection() {
                     }
                     alt={ind.name}
                     fill
+                    unoptimized={true}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     className="object-cover object-center group-hover:scale-105 transition-transform duration-300 brightness-[0.95]"
                   />
