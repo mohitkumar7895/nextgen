@@ -115,6 +115,7 @@ export default async function BlogDetailPage({
               alt={blog.title}
               fill
               priority
+              unoptimized={true}
               sizes="(max-width: 1024px) 100vw, 900px"
               className="object-cover object-center brightness-[0.92]"
             />
