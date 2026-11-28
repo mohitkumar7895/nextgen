@@ -18,9 +18,16 @@ import {
   AlertCircle,
   Eye,
   Save,
+  ShieldCheck,
+  Utensils,
+  Factory,
+  HardHat,
+  Building2,
+  Users,
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { ImageUploadField } from '@/components/admin/ImageUploadField';
+import { slugify } from '@/lib/utils';
 
 const defaultEmptyService = {
   id: 0,
@@ -47,6 +54,7 @@ export default function ServicesManagementPage() {
   const [editingService, setEditingService] = useState<any | null>(null);
   const [isNew, setIsNew] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [slugManuallyEdited, setSlugManuallyEdited] = useState(false);
 
   const fetchServices = async () => {
     try {
@@ -75,11 +83,13 @@ export default function ServicesManagementPage() {
       industry_applications: Array.isArray(svc.industry_applications) && svc.industry_applications.length > 0 ? svc.industry_applications : [''],
     });
     setIsNew(false);
+    setSlugManuallyEdited(true);
   };
 
   const handleAddNew = () => {
-    setEditingService({ ...defaultEmptyService, slug: `service-${Date.now().toString().slice(-4)}` });
+    setEditingService({ ...defaultEmptyService, slug: '' });
     setIsNew(true);
+    setSlugManuallyEdited(false);
   };
 
   const handleDelete = async (id: number) => {
@@ -88,6 +98,9 @@ export default function ServicesManagementPage() {
       const res = await fetch(`/api/services/${id}`, { method: 'DELETE' });
       if (res.ok) {
         toast.success('Service deleted successfully');
+        try {
+          localStorage.setItem('services_updated', Date.now().toString());
+        } catch {}
         fetchServices();
       } else {
         toast.error('Failed to delete service');
@@ -99,10 +112,13 @@ export default function ServicesManagementPage() {
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!editingService.title || !editingService.slug || !editingService.short_description) {
-      toast.error('Title, slug, and short description are required.');
+    if (!editingService.title?.trim()) {
+      toast.error('Service title is required.');
       return;
     }
+
+    const cleanSlug = slugify(editingService.slug || editingService.title || `service-${Date.now().toString().slice(-4)}`);
+    const cleanShortDesc = editingService.short_description?.trim() || editingService.subtitle?.trim() || `Professional ${editingService.title} provided by NexGen Workforce Services across Gujarat.`;
 
     try {
       setSaving(true);
@@ -112,9 +128,11 @@ export default function ServicesManagementPage() {
       // Clean empty list items
       const payload = {
         ...editingService,
-        key_responsibilities: editingService.key_responsibilities.filter((s: string) => s.trim().length > 0),
-        benefits: editingService.benefits.filter((s: string) => s.trim().length > 0),
-        industry_applications: editingService.industry_applications.filter((s: string) => s.trim().length > 0),
+        slug: cleanSlug,
+        short_description: cleanShortDesc,
+        key_responsibilities: (editingService.key_responsibilities || []).filter((s: string) => s?.trim().length > 0),
+        benefits: (editingService.benefits || []).filter((s: string) => s?.trim().length > 0),
+        industry_applications: (editingService.industry_applications || []).filter((s: string) => s?.trim().length > 0),
       };
 
       const res = await fetch(url, {
@@ -126,6 +144,9 @@ export default function ServicesManagementPage() {
       const data = await res.json();
       if (res.ok) {
         toast.success(isNew ? 'Service created successfully' : 'Service updated successfully');
+        try {
+          localStorage.setItem('services_updated', Date.now().toString());
+        } catch {}
         setEditingService(null);
         fetchServices();
       } else {
@@ -185,27 +206,45 @@ export default function ServicesManagementPage() {
                   <input
                     type="text"
                     required
+                    placeholder="e.g. Industrial Security Guard Supply"
                     value={editingService.title}
-                    onChange={(e) =>
-                      setEditingService({ ...editingService, title: e.target.value })
-                    }
-                    className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm"
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      if (isNew && !slugManuallyEdited) {
+                        setEditingService({
+                          ...editingService,
+                          title: val,
+                          slug: slugify(val),
+                        });
+                      } else {
+                        setEditingService({ ...editingService, title: val });
+                      }
+                    }}
+                    className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-brand-blue/20 outline-none"
                   />
                 </div>
 
                 <div>
                   <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                    URL Slug * (e.g. housekeeping)
+                    URL Slug * (auto-generated)
                   </label>
                   <input
                     type="text"
                     required
+                    placeholder="e.g. industrial-security-guard-supply"
                     value={editingService.slug}
-                    onChange={(e) =>
-                      setEditingService({ ...editingService, slug: e.target.value })
-                    }
-                    className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm font-mono text-xs"
+                    onChange={(e) => {
+                      setSlugManuallyEdited(true);
+                      setEditingService({
+                        ...editingService,
+                        slug: e.target.value.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),
+                      });
+                    }}
+                    className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm font-mono text-xs focus:ring-2 focus:ring-brand-blue/20 outline-none"
                   />
+                  <p className="text-[11px] text-slate-500 mt-1">
+                    URL: <span className="text-brand-blue font-semibold">/services/{editingService.slug || 'slug'}</span>
+                  </p>
                 </div>
               </div>
 
@@ -215,6 +254,7 @@ export default function ServicesManagementPage() {
                 </label>
                 <input
                   type="text"
+                  placeholder="e.g. Licensed Corporate & Industrial Security Guards"
                   value={editingService.subtitle || ''}
                   onChange={(e) =>
                     setEditingService({ ...editingService, subtitle: e.target.value })
@@ -225,11 +265,11 @@ export default function ServicesManagementPage() {
 
               <div>
                 <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                  Short Description (Homepage Card) *
+                  Short Description (Homepage Card)
                 </label>
                 <textarea
                   rows={2}
-                  required
+                  placeholder="Short overview shown on homepage and category cards..."
                   value={editingService.short_description || ''}
                   onChange={(e) =>
                     setEditingService({ ...editingService, short_description: e.target.value })
@@ -244,6 +284,7 @@ export default function ServicesManagementPage() {
                 </label>
                 <textarea
                   rows={4}
+                  placeholder="Comprehensive service details shown on the dedicated service page..."
                   value={editingService.full_description || ''}
                   onChange={(e) =>
                     setEditingService({ ...editingService, full_description: e.target.value })
@@ -264,11 +305,17 @@ export default function ServicesManagementPage() {
                     }
                     className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs bg-white"
                   >
-                    <option value="Sparkles">Sparkles (Housekeeping)</option>
-                    <option value="Package">Package (Warehouse)</option>
-                    <option value="Wrench">Wrench (Technical)</option>
-                    <option value="Truck">Truck (Drivers)</option>
-                    <option value="Briefcase">Briefcase (General)</option>
+                    <option value="Briefcase">Briefcase (General Manpower)</option>
+                    <option value="ShieldCheck">ShieldCheck (Security & Guard)</option>
+                    <option value="Utensils">Utensils (Industrial Canteen)</option>
+                    <option value="Sparkles">Sparkles (Housekeeping & Cleaning)</option>
+                    <option value="Package">Package (Warehouse & Store)</option>
+                    <option value="Wrench">Wrench (Technical & Maintenance)</option>
+                    <option value="Truck">Truck (Drivers & Transport)</option>
+                    <option value="Factory">Factory (Plant & Industrial)</option>
+                    <option value="HardHat">HardHat (Construction & Site)</option>
+                    <option value="Building2">Building2 (Corporate Facility)</option>
+                    <option value="Users">Users (Staffing & Workforce)</option>
                   </select>
                 </div>
 

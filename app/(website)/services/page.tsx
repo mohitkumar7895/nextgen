@@ -12,6 +12,10 @@ import {
   ShieldCheck,
   Building,
   Utensils,
+  Factory,
+  HardHat,
+  Building2,
+  Users,
 } from 'lucide-react';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { CtaBanner } from '@/components/home/CtaBanner';
@@ -33,6 +37,10 @@ const iconMap: Record<string, any> = {
   Briefcase,
   ShieldCheck,
   Utensils,
+  Factory,
+  HardHat,
+  Building2,
+  Users,
 };
 
 export default async function ServicesPage() {

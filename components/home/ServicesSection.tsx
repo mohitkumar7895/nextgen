@@ -13,6 +13,10 @@ import {
   Briefcase,
   ShieldCheck,
   Utensils,
+  Factory,
+  HardHat,
+  Building2,
+  Users,
 } from 'lucide-react';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 
@@ -127,12 +131,16 @@ const iconMap: Record<string, any> = {
   Briefcase,
   ShieldCheck,
   Utensils,
+  Factory,
+  HardHat,
+  Building2,
+  Users,
 };
 
 export function ServicesSection() {
   const [services, setServices] = useState<any[]>(fallbackServices);
 
-  useEffect(() => {
+  const loadServices = () => {
     fetch(`/api/services?_t=${Date.now()}`, {
       cache: 'no-store',
       headers: { 'Cache-Control': 'no-cache, no-store' },
@@ -144,6 +152,28 @@ export function ServicesSection() {
         }
       })
       .catch((err) => console.log('Using fallback services:', err));
+  };
+
+  useEffect(() => {
+    loadServices();
+
+    const handleStorage = (e: StorageEvent) => {
+      if (e.key === 'services_updated') {
+        loadServices();
+      }
+    };
+
+    const handleFocus = () => {
+      loadServices();
+    };
+
+    window.addEventListener('storage', handleStorage);
+    window.addEventListener('focus', handleFocus);
+
+    return () => {
+      window.removeEventListener('storage', handleStorage);
+      window.removeEventListener('focus', handleFocus);
+    };
   }, []);
 
   return (

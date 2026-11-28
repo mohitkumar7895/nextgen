@@ -29,14 +29,14 @@ export const AdminLoginSchema = z.object({
 });
 
 export const ServiceFormSchema = z.object({
-  title: z.string().min(3, 'Service title is required').max(200),
-  slug: z.string().min(3, 'Slug is required').max(120),
+  title: z.string().min(2, 'Service title is required (minimum 2 characters)').max(200),
+  slug: z.string().min(1, 'Valid slug is required').max(120),
   subtitle: z.string().optional().or(z.literal('')),
-  short_description: z.string().min(10, 'Short description is required'),
+  short_description: z.string().optional().or(z.literal('')),
   full_description: z.string().optional().or(z.literal('')),
   icon_name: z.string().default('Briefcase'),
-  image_url: z.string().url('Must be a valid image URL').optional().or(z.literal('')),
-  banner_url: z.string().url('Must be a valid banner URL').optional().or(z.literal('')),
+  image_url: z.string().optional().or(z.literal('')),
+  banner_url: z.string().optional().or(z.literal('')),
   key_responsibilities: z.array(z.string()).default([]),
   benefits: z.array(z.string()).default([]),
   industry_applications: z.array(z.string()).default([]),

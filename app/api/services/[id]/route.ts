@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { ServiceModel } from '@/models/Service';
 import { getAdminSession } from '@/lib/auth';
 import { ServiceFormSchema } from '@/lib/validations';
+import { slugify } from '@/lib/utils';
 
 export async function GET(
   req: NextRequest,
@@ -40,18 +41,35 @@ export async function PUT(
     if (isNaN(id)) return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
 
     const body = await req.json();
+
+    // Auto-generate & sanitize slug
+    let rawSlug = body.slug || body.title || '';
+    let cleanSlug = slugify(rawSlug);
+    if (!cleanSlug) {
+      cleanSlug = `service-${id}`;
+    }
+
+    // Check slug collision
+    let uniqueSlug = cleanSlug;
+    let counter = 1;
+    while (true) {
+      const existing = await ServiceModel.findBySlug(uniqueSlug);
+      if (!existing || existing.id === id) break;
+      uniqueSlug = `${cleanSlug}-${counter}`;
+      counter++;
+    }
+    body.slug = uniqueSlug;
+
+    if (!body.short_description || body.short_description.trim() === '') {
+      body.short_description = body.subtitle || `Professional ${body.title || 'workforce'} services provided by NexGen across Gujarat.`;
+    }
+
     const parsed = ServiceFormSchema.safeParse(body);
     if (!parsed.success) {
       return NextResponse.json(
         { error: parsed.error.errors[0]?.message || 'Validation error' },
         { status: 400 }
       );
-    }
-
-    // Check slug collision
-    const existing = await ServiceModel.findBySlug(parsed.data.slug);
-    if (existing && existing.id !== id) {
-      return NextResponse.json({ error: 'This slug is already used by another service' }, { status: 400 });
     }
 
     await ServiceModel.update(id, parsed.data as any);

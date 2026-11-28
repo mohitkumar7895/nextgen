@@ -16,6 +16,8 @@ import {
   Phone,
   MessageCircle,
   Utensils,
+  Factory,
+  HardHat,
 } from 'lucide-react';
 import { ServiceModel } from '@/models/Service';
 import { InquiryForm } from '@/components/forms/InquiryForm';
@@ -31,6 +33,10 @@ const iconMap: Record<string, any> = {
   Briefcase,
   ShieldCheck,
   Utensils,
+  Factory,
+  HardHat,
+  Building2,
+  Users,
 };
 
 export async function generateMetadata({
