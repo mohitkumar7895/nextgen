@@ -150,6 +150,7 @@ CREATE TABLE IF NOT EXISTS `media` (
   `file_size` INT NOT NULL DEFAULT 0,
   `media_category` VARCHAR(50) NOT NULL DEFAULT 'general',
   `alt_text` VARCHAR(255) NULL,
+  `file_data` LONGTEXT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   INDEX `idx_media_category` (`media_category`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
